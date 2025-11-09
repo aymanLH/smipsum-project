@@ -2,7 +2,7 @@
 // auth.js - Complete Authentication & UI Logic
 // ==========================================
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "smipsum-project-production.up.railway.app";
 
 // ==========================================
 // INITIALIZATION
