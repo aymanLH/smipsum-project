@@ -106,7 +106,7 @@ async function setupUserInterface() {
 
   try {
     // Load full profile from server
-    const res = await fetch(`${API_URL}/profile`, {
+    const res = await fetch(`${API_URL}/api/profile`, {
       headers: { 'Authorization': `Bearer ${getToken()}` }
     });
 
@@ -289,7 +289,7 @@ async function handleDemandSubmission(e) {
     }
 
     // Send to server
-    const res = await fetch(`${API_URL}/demands`, {
+    const res = await fetch(`${API_URL}/api/demands`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -522,7 +522,7 @@ async function loadDemands() {
   console.log("📋 Loading user demands...");
 
   try {
-    const res = await fetch(`${API_URL}/demands`, {
+    const res = await fetch(`${API_URL}/api/demands`, {
       headers: { 'Authorization': `Bearer ${getToken()}` }
     });
 
@@ -619,7 +619,7 @@ async function viewDemand(demandId) {
   console.log("👁️ Viewing demand:", demandId);
 
   try {
-    const res = await fetch(`${API_URL}/demands/${demandId}`, {
+    const res = await fetch(`${API_URL}/api/demands/${demandId}`, {
       headers: { 'Authorization': `Bearer ${getToken()}` }
     });
 
@@ -728,7 +728,7 @@ async function loadStatistics() {
   console.log("📊 Loading user statistics...");
 
   try {
-    const res = await fetch(`${API_URL}/statistics`, {
+    const res = await fetch(`${API_URL}/api/statistics`, {
       headers: { 'Authorization': `Bearer ${getToken()}` }
     });
 
@@ -1073,7 +1073,7 @@ async function handleLogin(e) {
     console.log("🧹 Clearing old auth data before new login...");
     clearAuthData();
 
-    const res = await fetch(`${API_URL}/login`, {
+    const res = await fetch(`${API_URL}/api/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password })
@@ -1311,7 +1311,7 @@ async function handleRegister(e) {
   }
 
   try {
-    const res = await fetch(`${API_URL}/register`, {
+    const res = await fetch(`${API_URL}/api/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, email, password })
@@ -1430,7 +1430,7 @@ async function loadDemands() {
   console.log("📋 Loading user demands...");
 
   try {
-    const res = await fetch(`${API_URL}/demands`, {
+    const res = await fetch(`${API_URL}/api/demands`, {
       headers: { 'Authorization': `Bearer ${getToken()}` }
     });
 
@@ -1465,7 +1465,7 @@ async function loadDemands() {
 
 async function viewDemand(demandId) {
   try {
-    const res = await fetch(`${API_URL}/demands/${demandId}`, {
+    const res = await fetch(`${API_URL}/api/demands/${demandId}`, {
       headers: { 'Authorization': `Bearer ${getToken()}` }
     });
 
@@ -1561,7 +1561,7 @@ async function updateDemandStatusWithResponse(demandId, status, responseText) {
   const response = responseText || document.getElementById('adminResponseText')?.value || '';
 
   try {
-    const res = await fetch(`${API_URL}/admin/demands/${demandId}`, {
+    const res = await fetch(`${API_URL}/api/admin/demands/${demandId}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -1586,7 +1586,7 @@ async function updateDemandStatusWithResponse(demandId, status, responseText) {
 
 async function loadAllUsers() {
   try {
-    const res = await fetch(`${API_URL}/admin/users`, {
+    const res = await fetch(`${API_URL}/api/admin/users`, {
       headers: { 'Authorization': `Bearer ${getToken()}` }
     });
 
@@ -1642,7 +1642,7 @@ function renderAdminUsers(users) {
 
 async function loadAdminStatistics() {
   try {
-    const res = await fetch(`${API_URL}/admin/statistics`, {
+    const res = await fetch(`${API_URL}/api/admin/statistics`, {
       headers: { 'Authorization': `Bearer ${getToken()}` }
     });
 
@@ -1752,7 +1752,7 @@ async function deleteDemand(demandId) {
   if (!confirm('Êtes-vous sûr de vouloir supprimer cette demande ?')) return;
 
   try {
-    const res = await fetch(`${API_URL}/demands/${demandId}`, {
+    const res = await fetch(`${API_URL}/api/demands/${demandId}`, {
       method: 'DELETE',
       headers: { 'Authorization': `Bearer ${getToken()}` }
     });
@@ -2044,7 +2044,7 @@ function renderDemands(demands) {
 }
 async function loadStatistics() {
   try {
-    const res = await fetch(`${API_URL}/statistics`, {
+    const res = await fetch(`${API_URL}/api/statistics`, {
       headers: { 'Authorization': `Bearer ${getToken()}` }
     });
 
@@ -2270,7 +2270,7 @@ async function loadAdminStatistics() {
   console.log("📊 Loading admin statistics...");
 
   try {
-    const res = await fetch(`${API_URL}/admin/statistics`, {
+    const res = await fetch(`${API_URL}/api/admin/statistics`, {
       headers: { 'Authorization': `Bearer ${getToken()}` }
     });
 
@@ -2336,7 +2336,7 @@ async function loadAllDemands() {
   }
 
   try {
-    const res = await fetch(`${API_URL}/admin/demands`, {
+    const res = await fetch(`${API_URL}/api/admin/demands`, {
       headers: { 'Authorization': `Bearer ${getToken()}` }
     });
 
@@ -2608,7 +2608,7 @@ async function viewAdminDemand(demandId) {
   console.log("👁️ Admin viewing demand:", demandId);
 
   try {
-    const res = await fetch(`${API_URL}/admin/demands/${demandId}`, {
+    const res = await fetch(`${API_URL}/api/admin/demands/${demandId}`, {
       headers: { 'Authorization': `Bearer ${getToken()}` }
     });
 
@@ -2749,7 +2749,7 @@ async function updateAdminDemandStatus(demandId) {
   console.log(`🔄 Updating demand ${demandId} to status: ${newStatus}`);
 
   try {
-    const res = await fetch(`${API_URL}/admin/demands/${demandId}/status`, {
+    const res = await fetch(`${API_URL}/api/admin/demands/${demandId}/status`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -2799,7 +2799,7 @@ async function loadAllUsers() {
   }
 
   try {
-    const res = await fetch(`${API_URL}/admin/users`, {
+    const res = await fetch(`${API_URL}/api/admin/users`, {
       headers: { 'Authorization': `Bearer ${getToken()}` }
     });
 
