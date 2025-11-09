@@ -2,7 +2,7 @@
 // auth.js - Complete Authentication & UI Logic
 // ==========================================
 
-const API_URL = "https://smipsum-project-production.up.railway.app";
+const API_URL = "https://smipsum.up.railway.app/";
 
 // ==========================================
 // INITIALIZATION
