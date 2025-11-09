@@ -1,0 +1,200 @@
+/* --------------------
+   Login Page Styling
+-------------------- */
+.login-body {
+  background: var(--gradient-dark);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-lg);
+  overflow: hidden;
+  position: relative;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Animated background glow */
+.login-body::before,
+.login-body::after {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+.login-body::before {
+  background: radial-gradient(circle, rgba(255,107,53,0.15) 0%, transparent 70%);
+  top: -60%;
+  right: -60%;
+  animation: rotate 20s linear infinite;
+}
+
+.login-body::after {
+  background: radial-gradient(circle, rgba(124,179,66,0.15) 0%, transparent 70%);
+  bottom: -60%;
+  left: -60%;
+  animation: rotate 25s linear infinite reverse;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Container */
+.login-container {
+  width: 100%;
+  max-width: 480px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Card */
+.login-card {
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(15px);
+  border-radius: var(--radius-2xl);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  padding: var(--space-3xl);
+  border: 1px solid rgba(255,255,255,0.3);
+  overflow: hidden;
+}
+
+.login-card::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-xl);
+}
+
+/* Header */
+.login-header .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 800;
+  font-size: 1.8rem;
+  color: var(--primary-orange);
+  gap: var(--space-sm);
+}
+
+.login-header h2 {
+  font-size: 2rem;
+  margin-top: var(--space-lg);
+  color: var(--gray-800);
+}
+
+.login-header p {
+  color: var(--gray-600);
+  font-size: 1rem;
+}
+
+/* Inputs */
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--space-xl);
+}
+
+.input-group i {
+  position: absolute;
+  left: var(--space-lg);
+  color: var(--gray-500);
+  font-size: 1.1rem;
+}
+
+.input-group input {
+  width: 100%;
+  padding: var(--space-md) var(--space-lg) var(--space-md) calc(var(--space-2xl) + var(--space-md));
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+  border-color: var(--primary-orange);
+  box-shadow: 0 0 0 3px rgba(255,107,53,0.1);
+}
+
+/* Password toggle */
+.password-toggle {
+  position: absolute;
+  right: var(--space-md);
+  background: none;
+  border: none;
+  color: var(--gray-500);
+  cursor: pointer;
+  padding: var(--space-xs);
+}
+
+/* Buttons */
+.btn-login {
+  width: 100%;
+  background: linear-gradient(135deg, #ff6b35, #7cb342);
+  color: white;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: var(--space-lg);
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-sm);
+  transition: all 0.3s ease;
+  margin-top: var(--space-lg);
+}
+
+.btn-login:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
+.btn-login:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Register button theme */
+.register-link a {
+  color: #ff6b35;
+  font-weight: 600;
+  background: linear-gradient(135deg, #ff6b35, #7cb342);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: 0.3s;
+}
+
+.register-link a:hover {
+  filter: brightness(1.2);
+}
+
+/* Demo Credentials */
+.demo-credentials {
+  background: var(--gray-50);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  font-size: 0.9rem;
+  border: 1px solid var(--gray-200);
+  margin-top: var(--space-xl);
+}
+
+/* Back to home */
+.back-home a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--gray-600);
+  transition: 0.3s;
+}
+
+.back-home a:hover {
+  color: var(--primary-orange);
+}

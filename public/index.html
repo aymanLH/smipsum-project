@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMIPSUM - Construction Durable et de Qualité</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style1.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <section class="nav-sec" id="navbar">
+    <nav>
+      <a href="#accueil" class="logo">
+        <div class="logo-icon"><img src="images/smipsum.png" alt=""></div>
+      </a>
+      <div class="nav-container">
+        <ul class="nav-links">
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#apropos">À propos</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#projets">Projets</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="register-btn">
+        <a href="login.html">Se connecter</a>
+      </div>
+      <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="#accueil" onclick="toggleMobileMenu()">Accueil</a></li>
+        <li><a href="#apropos" onclick="toggleMobileMenu()">À propos</a></li>
+        <li><a href="#services" onclick="toggleMobileMenu()">Services</a></li>
+        <li><a href="#projets" onclick="toggleMobileMenu()">Projets</a></li>
+        <li><a href="#contact" onclick="toggleMobileMenu()">Contact</a></li>
+        <li><a href="login.html" onclick="toggleMobileMenu()">Se connecter</a></li>
+      </ul>
+    </div>
+  </section>
+  
+  <!-- Hero Section -->
+  <section id="accueil" class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Votre projet</h1>
+        <h2>Notre mission</h2>
+        <p class="desc">
+          <span class="brand1">SMIP</span><span class="brand2">SUM</span> est spécialisé dans la construction durable et de qualité. Nous mettons notre expertise au service de vos projets pour bâtir des structures solides et fiables.
+        </p>
+        <div class="hero-buttons">
+          <a href="login.html" class="btn-primary">
+            <i data-lucide="clipboard-list"></i> Soumettre une demande
+          </a>
+          <a href="#contact" class="btn-secondary" onclick="scrollToSection('contact')">
+            <i data-lucide="message-circle"></i> Consultation gratuite
+          </a>
+        </div>
+      </div>
+      <div class="heroimg">
+        <img src="images/hero2.png" alt="Construction Hero" class="heroimg-bg">
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="apropos" class="section">
+    <div class="section-header">
+      <i data-lucide="info"></i>
+      <h2 class="section-title">À propos de nous</h2>
+      <p class="section-description">Nous sommes engagés à fournir des services de construction de qualité et durables.</p>
+    </div>
+    <div class="about-content">
+      <div class="about-text">
+        <p>SMIPSUM est une entreprise de construction basée à Casablanca, spécialisée dans les projets durables et innovants. Avec plus de 5 ans d'expérience, nous avons bâti notre réputation sur la qualité de nos réalisations et notre engagement envers nos clients.<br>Notre équipe d'experts accompagne chaque projet depuis la conception jusqu'à la livraison, en garantissant les plus hauts standards de qualité et de durabilité.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-item">
+          <h3 class="stat-number" data-target="8">0</h3>
+          <p>Projets réalisés</p>
+        </div>
+        <div class="stat-item">
+          <h3 class="stat-number" data-target="5">0</h3>
+          <p>Années d'expérience</p>
+        </div>
+        <div class="stat-item">
+          <h3 class="stat-number" data-target="98">0</h3>
+          <p>Satisfaction client</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="section">
+    <div class="section-header">
+      <i data-lucide="wrench"></i>
+      <h2 class="section-title">Nos Services</h2>
+      <p class="section-description">Des solutions complètes adaptées à vos besoins.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <i data-lucide="home"></i>
+        <h3>Construction</h3>
+        <p>Nous construisons des bâtiments modernes et durables selon les dernières normes environnementales.</p>
+        <ul class="service-features">
+          <li>Construction résidentielle</li>
+          <li>Bâtiments commerciaux</li>
+          <li>Projets industriels</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <i data-lucide="paintbrush"></i>
+        <h3>Rénovation</h3>
+        <p>Transformez vos espaces existants en lieux inspirants et fonctionnels.</p>
+        <ul class="service-features">
+          <li>Rénovation intérieure</li>
+          <li>Amélioration énergétique</li>
+          <li>Mise aux normes</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <i data-lucide="factory"></i>
+        <h3>Gestion de projet</h3>
+        <p>Nous coordonnons et livrons vos projets dans les délais et budgets convenus.</p>
+        <ul class="service-features">
+          <li>Planification complète</li>
+          <li>Coordination des équipes</li>
+          <li>Suivi qualité</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projets" class="section">
+    <div class="section-header">
+      <i data-lucide="briefcase"></i>
+      <h2 class="section-title">Nos Projets</h2>
+      <p class="section-description">Quelques réalisations récentes de notre équipe.</p>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <img src="images/immeuble.jpg" alt="Immeuble Résidentiel" loading="lazy">
+        <div class="project-content">
+          <h3 style="font-size: 1.6rem;"><i data-lucide="building-2"></i> Immeuble Résidentiel</h3>
+          <p>Un projet moderne conçu pour le confort et l'efficacité énergétique.</p>
+          <div class="project-details">
+            <span class="project-location">Casablanca</span>
+            <span class="project-year">2021</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="images/complex.jpg" alt="Complexe Industriel" loading="lazy">
+        <div class="project-content">
+          <h3><i data-lucide="warehouse"></i> Complexe Industriel</h3>
+          <p>Espaces robustes conçus pour une activité industrielle intensive.</p>
+          <div class="project-details">
+            <span class="project-location">Mohammedia</span>
+            <span class="project-year">2023</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="images/usine.jpg" alt="Usine de Verre" loading="lazy">
+        <div class="project-content">
+          <h3><i data-lucide="school"></i> Usine de Verre</h3>
+          <p>Un espace industriel moderne et efficace pour la production de verre.</p>
+          <div class="project-details">
+            <span class="project-location">Rabat</span>
+            <span class="project-year">2024</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <div class="section-header">
+      <i data-lucide="phone"></i>
+      <h2 class="section-title">Contactez-nous</h2>
+      <p class="section-description">Nous serions ravis d'échanger avec vous sur votre projet.</p>
+    </div>
+    <div class="contact-content">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon"><i data-lucide="map-pin"></i></div>
+          <div>
+            <h4>Adresse</h4>
+            <p>123 Rue Exemple, Casablanca, Maroc</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i data-lucide="phone"></i></div>
+          <div>
+            <h4>Téléphone</h4>
+            <p>+212 6 12 34 56 78</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i data-lucide="mail"></i></div>
+          <div>
+            <h4>Email</h4>
+            <p>contact@smipsum.ma</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i data-lucide="clock"></i></div>
+          <div>
+            <h4>Horaires</h4>
+            <p>Lun - Ven: 8h00 - 18h00<br>Sam: 8h00 - 13h00</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="contact-form">
+        <form onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Votre nom" required>
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" placeholder="Votre email" required>
+          </div>
+          <div class="form-group">
+            <input type="tel" name="phone" placeholder="Votre téléphone">
+          </div>
+          <div class="form-group">
+            <select name="subject" required>
+              <option value="">Sujet de votre demande</option>
+              <option value="construction">Construction neuve</option>
+              <option value="renovation">Rénovation</option>
+              <option value="consultation">Consultation</option>
+              <option value="devis">Demande de devis</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <textarea name="message" rows="5" placeholder="Votre message" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">
+            <span class="btn-text">
+              <i data-lucide="send"></i> Envoyer le message
+            </span>
+            <span class="btn-loading" style="display: none;">
+              <i data-lucide="loader-2"></i> Envoi en cours...
+            </span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>SMIPSUM</h4>
+        <p>Votre partenaire de confiance pour tous vos projets de construction.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+          <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+          <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Construction</a></li>
+          <li><a href="#services">Rénovation</a></li>
+          <li><a href="#services">Gestion de projet</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <ul>
+          <li><i data-lucide="map-pin"></i> Casablanca, Maroc</li>
+          <li><i data-lucide="phone"></i> +212 6 12 34 56 78</li>
+          <li><i data-lucide="mail"></i> contact@smipsum.ma</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 SMIPSUM. Tous droits réservés.</p>
+      <p><a href="#">Mentions légales</a> | <a href="#">Politique de confidentialité</a></p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
