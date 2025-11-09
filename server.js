@@ -371,8 +371,6 @@ app.get("/api/demands/:id", authenticateToken, async (req, res) => {
     res.status(500).json({ msg: "Server error" });
   }
 });
-const cors = require('cors');
-
 app.use(cors({
   origin: [
     'https://your-actual-netlify-site.netlify.app',  // ← Replace with YOUR Netlify URL
