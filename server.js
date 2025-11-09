@@ -374,9 +374,14 @@ app.get("/api/demands/:id", authenticateToken, async (req, res) => {
 const cors = require('cors');
 
 app.use(cors({
-  origin: 'https://smipsum.netlify.app', // allow your frontend
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
+  origin: [
+    'https://your-actual-netlify-site.netlify.app',  // ← Replace with YOUR Netlify URL
+    'http://localhost:3000',  // For local testing
+    'http://127.0.0.1:5500'   // For Live Server
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
