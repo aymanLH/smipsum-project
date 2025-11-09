@@ -371,6 +371,12 @@ app.get("/api/demands/:id", authenticateToken, async (req, res) => {
     res.status(500).json({ msg: "Server error" });
   }
 });
+const cors = require('cors');
 
+app.use(cors({
+  origin: 'https://smipsum.netlify.app', // allow your frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
