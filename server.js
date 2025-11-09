@@ -9,6 +9,16 @@ dotenv.config();
 const app = express();
 
 app.use(cors());
+app.use(cors({
+  origin: [
+    'https://smipsum.up.railway.app',  // <- your frontend Railway URL
+    'https://smipsum-project-production.up.railway.app', // optional
+    'http://localhost:3000'            // local dev
+  ],
+  methods: ['GET','POST','PUT','PATCH','DELETE','OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.static("public"));
 
