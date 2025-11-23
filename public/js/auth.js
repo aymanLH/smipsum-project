@@ -929,6 +929,7 @@ function initLoginPage() {
   // Then setup password toggles
   setupPasswordToggles();
   setupSocialLogin(); 
+  setupForgotPassword(); 
   // Setup auth switching
   setupAuthSwitching();
 
@@ -1306,6 +1307,24 @@ function setupSocialLogin() {
   });
   
   console.log('✅ Social login buttons initialized');
+}
+function setupForgotPassword() {
+  const forgotPasswordLink = document.querySelector('.forgot-password');
+  
+  if (forgotPasswordLink) {
+    forgotPasswordLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Show a message that this feature is coming soon
+      showAlert('alertMessage', ' Password reset feature coming soon! ', 'error');
+      
+      console.log('🔑 Forgot password clicked');
+    });
+    
+    console.log('✅ Forgot password handler attached');
+  } else {
+    console.warn('⚠️ Forgot password link not found');
+  }
 }
 // ==========================================
 // SAFEST GET CURRENT USER - REPLACE YOUR EXISTING ONE
