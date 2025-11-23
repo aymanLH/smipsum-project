@@ -912,17 +912,41 @@ function clearAuthData() {
 // ==========================================
 
 function initLoginPage() {
+  console.log("📄 Initializing login page...");
+  
   const authContainer = document.getElementById("authContainer");
-  if (!authContainer) return;
+  if (!authContainer) {
+    console.error("❌ Auth container not found");
+    return;
+  }
 
+  // Initialize Lucide icons FIRST
+  if (typeof lucide !== 'undefined' && lucide.createIcons) {
+    lucide.createIcons();
+    console.log("✅ Lucide icons initialized");
+  }
+
+  // Then setup password toggles
   setupPasswordToggles();
+  setupSocialLogin(); 
+  // Setup auth switching
   setupAuthSwitching();
 
+  // Setup form handlers
   const loginForm = document.getElementById("loginForm");
   const registerForm = document.getElementById("registerForm");
 
-  if (loginForm) loginForm.addEventListener("submit", handleLogin);
-  if (registerForm) registerForm.addEventListener("submit", handleRegister);
+  if (loginForm) {
+    loginForm.addEventListener("submit", handleLogin);
+    console.log("✅ Login form handler attached");
+  }
+  
+  if (registerForm) {
+    registerForm.addEventListener("submit", handleRegister);
+    console.log("✅ Register form handler attached");
+  }
+
+  console.log("✅ Login page initialization complete");
 }
 
 function setupAuthSwitching() {
@@ -962,20 +986,51 @@ function setupAuthSwitching() {
 }
 
 function setupPasswordToggles() {
+  console.log("🔐 Setting up password toggles...");
+
   ["Login", "Register"].forEach((type) => {
     const toggle = document.getElementById(`toggle${type}Password`);
-    if (!toggle) return;
+    const input = document.getElementById(`${type.toLowerCase()}Password`);
+    
+    if (!toggle || !input) {
+      console.warn(`⚠️ Password toggle elements not found for ${type}`);
+      return;
+    }
 
-    toggle.addEventListener("click", () => {
-      const input = document.getElementById(`${type.toLowerCase()}Password`);
-      const icon = toggle.querySelector("i");
-      const isPassword = input.type === "password";
+    console.log(`✅ Setting up ${type} password toggle`);
 
-      input.type = isPassword ? "text" : "password";
+    // Remove any existing listeners to prevent duplicates
+    const newToggle = toggle.cloneNode(true);
+    toggle.parentNode.replaceChild(newToggle, toggle);
+
+    newToggle.addEventListener("click", function(e) {
+      e.preventDefault();
+      
+      const passwordInput = document.getElementById(`${type.toLowerCase()}Password`);
+      const icon = this.querySelector("i");
+
+      if (!passwordInput || !icon) {
+        console.error(`❌ Elements not found in toggle for ${type}`);
+        return;
+      }
+
+      // Toggle password visibility
+      const isPassword = passwordInput.type === "password";
+      passwordInput.type = isPassword ? "text" : "password";
+      
+      // Change icon
       icon.setAttribute("data-lucide", isPassword ? "eye-off" : "eye");
-      lucide?.createIcons();
+      
+      // Reinitialize Lucide icons
+      if (typeof lucide !== 'undefined' && lucide.createIcons) {
+        lucide.createIcons();
+      }
+
+      console.log(`👁️ ${type} password visibility toggled to: ${passwordInput.type}`);
     });
   });
+
+  console.log("✅ Password toggles setup complete");
 }
 
 function showAlert(elementId, msg, type = "error") {
@@ -1159,33 +1214,99 @@ function resetButton(btn, btnText, btnLoading) {
 }
 // Fixed setupPasswordToggles with null checks
 function setupPasswordToggles() {
+  console.log("🔐 Setting up password toggles...");
+
   ["Login", "Register"].forEach((type) => {
-    const toggle = document.getElementById(`toggle${type}Password`);
-    if (!toggle) return;
+    const toggleId = `toggle${type}Password`;
+    const inputId = `${type.toLowerCase()}Password`;
+    
+    const toggle = document.getElementById(toggleId);
+    const input = document.getElementById(inputId);
+    
+    // Check if elements exist BEFORE setting up
+    if (!toggle) {
+      console.warn(`⚠️ Toggle button not found: ${toggleId}`);
+      return;
+    }
+    
+    if (!input) {
+      console.warn(`⚠️ Password input not found: ${inputId}`);
+      return;
+    }
 
-    toggle.addEventListener("click", () => {
-      const input = document.getElementById(`${type.toLowerCase()}Password`);
-      const icon = toggle.querySelector("i");
+    console.log(`✅ Setting up ${type} password toggle`);
 
-      // CRITICAL: Add null checks
-      if (!input || !icon) {
-        console.error(`Password toggle elements not found for ${type}`);
+    // DON'T CLONE - just remove old listeners and add new one
+    // Store the inputId for the closure
+    const passwordInputId = inputId;
+
+    // Remove all existing event listeners by replacing with clone, 
+    // but keep the original element in the DOM
+    const clone = toggle.cloneNode(true);
+    toggle.parentNode.replaceChild(clone, toggle);
+
+    // Now add listener to the clone (which is now in the DOM)
+    clone.addEventListener("click", function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      // Get fresh reference to input
+      const passwordInput = document.getElementById(passwordInputId);
+      
+      if (!passwordInput) {
+        console.error(`❌ Password input lost: ${passwordInputId}`);
         return;
       }
 
-      const isPassword = input.type === "password";
-
-      input.type = isPassword ? "text" : "password";
-      icon.setAttribute("data-lucide", isPassword ? "eye-off" : "eye");
-
-      // Safely reinitialize icons
-      if (typeof lucide !== 'undefined' && lucide.createIcons) {
-        lucide.createIcons();
+      // Find icon within the button that was clicked
+      let icon = this.querySelector("i[data-lucide]");
+      
+      if (!icon) {
+        // If icon not found, create it
+        console.warn(`⚠️ Icon not found, recreating...`);
+        this.innerHTML = '<i data-lucide="eye" size="20"></i>';
+        icon = this.querySelector("i");
       }
+
+      // Toggle password visibility
+      const isPassword = passwordInput.type === "password";
+      passwordInput.type = isPassword ? "text" : "password";
+      
+      // Change icon attribute
+      if (icon) {
+        icon.setAttribute("data-lucide", isPassword ? "eye-off" : "eye");
+        
+        // Reinitialize Lucide icons
+        if (typeof lucide !== 'undefined' && lucide.createIcons) {
+          lucide.createIcons();
+        }
+      }
+
+      console.log(`👁️ ${type} password is now: ${isPassword ? 'visible' : 'hidden'}`);
     });
   });
-}
 
+  console.log("✅ Password toggles setup complete");
+}
+function setupSocialLogin() {
+  const socialButtons = document.querySelectorAll('.social-btn');
+  
+  socialButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const platform = this.getAttribute('title'); // Gets "Google", "Apple", etc.
+      
+      // For now, just show an alert
+      alert(`🔄 ${platform} login coming soon!\n\nThis feature requires OAuth setup on the backend.`);
+      
+      // Or show a nicer message
+      showAlert('alertMessage', `${platform} login will be available soon!`, 'error');
+    });
+  });
+  
+  console.log('✅ Social login buttons initialized');
+}
 // ==========================================
 // SAFEST GET CURRENT USER - REPLACE YOUR EXISTING ONE
 // ==========================================
