@@ -33,11 +33,13 @@ Interactive portal for centralized project request management, enabling clients 
 - RESTful API architecture
 - JWT authentication
 - Middleware for request handling
+- MongoDB with Mongoose ODM
 
 ### Database
-- Relational database design
-- SQL queries and optimization
-- Data integrity constraints
+- MongoDB (NoSQL)
+- Mongoose schema design
+- Document-based data modeling
+- Indexing and query optimization
 
 ## 📦 Project Structure
 
@@ -63,7 +65,7 @@ smipsum-project/
 ### Prerequisites
 - Node.js v14 or higher
 - npm or yarn package manager
-- Database system (PostgreSQL/MySQL/MongoDB)
+- MongoDB (local installation or MongoDB Atlas)
 - Git
 
 ### Installation
@@ -84,10 +86,10 @@ npm install
 cp .env.example .env
 
 # Configure the following in .env:
-# - DATABASE_URL
-# - JWT_SECRET
-# - PORT
-# - SESSION_SECRET
+# - MONGODB_URI=mongodb://localhost:27017/smipsum
+# - JWT_SECRET=your_jwt_secret_key
+# - PORT=3000
+# - SESSION_SECRET=your_session_secret
 ```
 
 ### Running the Application
@@ -131,12 +133,17 @@ DELETE /api/users/:id
 
 ## 🗄️ Database Schema
 
-### Main Tables
+### MongoDB Collections
 - `users` - User accounts and authentication
+  - email, password (hashed), role, createdAt
 - `projects` - Project requests and details
-- `project_status` - Status tracking and history
-- `documents` - File attachments and metadata
+  - title, description, clientId, status, budget, deadline
+- `statuses` - Project status history
+  - projectId, status, updatedBy, timestamp
+- `documents` - File attachments metadata
+  - projectId, filename, path, uploadedBy
 - `comments` - Communication and notes
+  - projectId, userId, message, timestamp
 
 ## 🧪 Testing
 
@@ -172,7 +179,7 @@ npm start
 
 ```
 NODE_ENV=production
-DATABASE_URL=your_production_db_url
+MONGODB_URI=mongodb+srv://user:password@cluster.mongodb.net/smipsum
 JWT_SECRET=your_secure_secret
 PORT=3000
 SESSION_SECRET=your_session_secret
